@@ -12,10 +12,10 @@ function windowLoadEventHandler() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
+
             var data = JSON.parse(this.responseText);
             vm.todos = data.result;
-            console.log('Result', vm.todos);
+            localStorage.setItem('todos', JSON.stringify(vm.todos));
 
             var todoListDiv = document.getElementById('todo-list');
             for (var i = 0; i < vm.todos.length; i++) {
@@ -62,13 +62,22 @@ function windowLoadEventHandler() {
 }
 
 function test() {
+    var newTodo = {};
+    newTodo["title"] = document.getElementById('title').value;
+    newTodo["description"] = document.getElementById('description').value;
 
+    var todos = JSON.parse(localStorage.getItem('todos'));
+    todos.push(newTodo);
+    console.log(todos);
 
+    localStorage.setItem('todos', JSON.stringify(todos));
+
+    
     var todoListDiv = document.getElementById('todo-list');
 
     var todoItem = document.createElement('div');
     var titleSpan = document.createElement('span');
-    titleSpan.innerText = 'TTT';
+    titleSpan.innerText = document.getElementById('title').value;
     todoItem.appendChild(titleSpan);
 
     var x = document.createElement("INPUT");
@@ -77,7 +86,7 @@ function test() {
 
     var todoContent = document.createElement('div');
     var description = document.createElement('span');
-    description.innerText = 'TTT';
+    description.innerText = document.getElementById('description').value;
     todoContent.appendChild(description);
 
     var operation = document.createElement('span');
@@ -98,4 +107,7 @@ function test() {
 
     var hr = document.createElement('hr');
     todoListDiv.appendChild(hr);
+
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = '';    
 }

@@ -116,17 +116,17 @@
         <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
         <div id="id01" class="modal">
             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-            <form class="modal-content animate" onsubmit="test()">
+            <form class="modal-content animate">
                 <div class="container">
                     <label><b>Title</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required>
-                    <textarea rows="4" cols="50">
+                    <input type="text" placeholder="Title" name="title" id="title" required>
+                    <textarea rows="4" cols="50" name="description" id="description">
                     </textarea>
                     <br>
-                    <input type="checkbox"> Status
+                    <input type="checkbox" name="status" id="status"> Status
                     <div class="clearfix">
                         <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                        <button type="submit" class="signupbtn">Add</button>
+                        <button type="button" onclick="document.getElementById('id01').style.display='none';test()" class="signupbtn">Add</button>
                     </div>
                 </div>
             </form>
